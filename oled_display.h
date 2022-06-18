@@ -4,5 +4,15 @@
 
 #ifndef KOMMUNIKATION_RPI_OLED_DISPLAY_H
 #define KOMMUNIKATION_RPI_OLED_DISPLAY_H
+#include <stdio.h>
+#include <wiringPi.h>
+#include <wiringPiI2C.h>
+#include <string.h>
+#include <stdlib.h>
+#include "ssd1306_i2c.h"
+#define I2CADRESS 0x00 //hier adresse einfügen
+
+void init_display();
+void updateTemp(double temp);
 
 #endif //KOMMUNIKATION_RPI_OLED_DISPLAY_H
