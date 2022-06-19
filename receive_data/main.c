@@ -16,7 +16,8 @@
 
 #define UDP_PORT 9000
 #define BUFFSIZE 1024
-#define I2CADRESSE 0x45
+#define DELAY 1000
+
 
 int sockid;
 int status;
@@ -82,6 +83,7 @@ int main(){
         }
         receive_data();
         updateTemp(recvBuf);
+        delay(DELAY);
     }
 
 

@@ -6,11 +6,18 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <wiringPi.h>
+#include <stdio.h>
+#include <wiringPi.h>
+#include <mcp3004.h>
+#include "temperature.h"
+#include <stdbool.h>
 
 #define UDP_PORT 9000
 #define BUFFSIZE 1024
-#define I2CADRESSE 0x45
+#define BASE 200 // wiringPi „device node“ BASE Nummer
+#define SPI_CHAN 0 // SPI Kanal
+#define DELAY 1000;
+
 
 int sockid;
 int status;
@@ -31,18 +38,33 @@ void ini(){
 
 }
 
-
-int main() {
-    printf("start transmitter \n");
-    ini();
-    float temp = 22.789;
-
+void send_data(float temp){
     char *msg ;
     gcvt(temp,5,msg);
     unsigned int addrlen = sizeof (server_addr);
 
     long count = sendto(sockid,msg,strlen(msg),0,(struct sockaddr*)&server_addr,addrlen);
     printf("count: %li\n",count);
+    status = count;
+}
+
+
+int main() {
+    printf("start transmitter \n");
+    ini();
+    mcp3004Setup(BASE, SPI_CHAN);
+
+    while (true){
+        if(status == -1){
+            break;
+        }
+
+        send_data(readTemperature(BASE))
+        delay(DELAY);
+    }
+
+
+
 
     status = close(sockid);
     if(status==0){
