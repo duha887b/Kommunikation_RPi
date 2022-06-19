@@ -10,16 +10,20 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <wiringPi.h>
+#include "oled_display.h"
+#include <stdbool.h>
+
 
 #define UDP_PORT 9000
 #define BUFFSIZE 1024
-#define I2CADRESSE 0x45
+#define DELAY 1000
+
 
 int sockid;
 int status;
 struct sockaddr_in client_addr;
 struct  sockaddr_in server_addr;
+char * recvBuf[BUFFSIZE];
 
 void ini(){
 
@@ -46,10 +50,7 @@ void ini(){
 
 }
 
-int main(){
-    printf("Starte Programm_s\n");
-    ini();
-    char * recvBuf[BUFFSIZE];
+void receive_data(){
     unsigned int addrlen = sizeof (client_addr);
 
     int count = recvfrom(sockid,recvBuf,BUFFSIZE,0,(struct sockaddr *)&client_addr,&addrlen);
@@ -66,8 +67,27 @@ int main(){
         t_buf[i] = recvBuf[i];
     }
 
-    
+
     printf(" :%f\n", strtod(t_buf,NULL));
+}
+
+
+int main(){
+    printf("Starte Programm_s\n");
+    ini();
+    init_display();
+
+    while(true){
+        if(status == -1){
+            break;
+        }
+        receive_data();
+        updateTemp(recvBuf);
+        delay(DELAY);
+    }
+
+
+
 
     status = close(sockid);
     if(status==0){
