@@ -2,7 +2,7 @@
 // Created by IVO on 19.6.2022 г..
 //
 
-#include "../Kommunikation_RPi/temperature.h"
+#include "temperature.h"
 #include <wiringPi.h>
 //helper един вид
 float convertADCToCelsius(float adcValue) {  // adcValue in mV

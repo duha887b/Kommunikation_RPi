@@ -20,6 +20,7 @@ int sockid;
 int status;
 struct sockaddr_in client_addr;
 struct  sockaddr_in server_addr;
+char * recvBuf[BUFFSIZE];
 
 void ini(){
 
@@ -46,10 +47,15 @@ void ini(){
 
 }
 
+void receive_data(){
+
+}
+
+
 int main(){
     printf("Starte Programm_s\n");
     ini();
-    char * recvBuf[BUFFSIZE];
+
     unsigned int addrlen = sizeof (client_addr);
 
     int count = recvfrom(sockid,recvBuf,BUFFSIZE,0,(struct sockaddr *)&client_addr,&addrlen);

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <wiringPi.h>
 #include <mcp3004.h>
-#include "../Kommunikation_RPi/temperature.h"
+#include "temperature.h"
 
 
 #define BASE 200 // wiringPi „device node“ BASE Nummer
