@@ -13,6 +13,6 @@
 #define I2CADRESS 0x00 //hier adresse einfügen
 
 void init_display();
-void updateTemp(double temp);
+void updateTemp(char *temp);
 
 #endif //KOMMUNIKATION_RPI_OLED_DISPLAY_H

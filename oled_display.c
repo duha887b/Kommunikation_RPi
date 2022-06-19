@@ -37,13 +37,12 @@ void init_display(){
     ssd1306_display();
 }
 
-void updateTemp(double temp){
+void updateTemp(char *temp){
     ssd1306_clearDisplay();
 
     char t[] = "Aktuelle Temperatur: ";
-    char s[30] = {};
-    sprintf(s, "%lf",temp);
-    strcat(t,s);
+
+    strcat(t,temp);
 
     ssd1306_drawString(t);
     ssd1306_display();
