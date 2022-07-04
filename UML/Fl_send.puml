@@ -5,7 +5,7 @@
 --> auslesen der Spannung des A/D-Wandlers über SPI
 --> umwandeln der Spannung in eine Temperatur (C°)
 --> senden der Daten über den Socket
---> Unterberechnung des Programms für 1 Sekunde
+--> Unterbrechung des Programms für 1 Sekunde
 --> auslesen der Spannung des A/D-Wandlers über SPI
 
 @enduml

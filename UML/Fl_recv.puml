@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 (*)-->setup IP-Parameter
 if "bind socket" then
--->[binding erfolgreich] steup Display\n - setzen der I2C Adresse \n - Display bereinigen \n -setzen des Willkommenstextes
+-->[binding erfolgreich] setup Display\n - setzen der I2C Adresse \n - Display bereinigen \n -setzen des Willkommenstextes
 -->Empfangen der Daten vom Socket
 --> Temperatur abspeichern (recvBuf)
 --> Display leeren \n (recvBuf) auf Display schreiben
